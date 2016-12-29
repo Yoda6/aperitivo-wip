@@ -3,42 +3,39 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 // MATERIAL DESIGN MODULES
 import { MaterialModule } from '@angular/material';
 
 import { CardComponent } from './../shared/card/card.component';
-import { FormComponent } from './../shared/form/form.component';
-import { PeopleService } from './../shared/people-service/people.service';
-import { NaPipe } from './../shared/na-pipe/na.pipe';
-import { SfeirBadgeDirective } from './../shared/badge/sfeir-badge.directive';
+import { DetailedCardComponent } from './../shared/detailed-card/detailed-card.component';
+import { SearchBarComponent } from './../shared/search-bar/search-bar.component';
+import { DrinkService } from './../shared/drink-service/drink.service';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
     RouterModule,
-    ReactiveFormsModule,
+    FormsModule,
     MaterialModule.forRoot()
   ],
   exports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule,
+    FormsModule,
     CardComponent,
-    FormComponent,
-    MaterialModule,
-    NaPipe,
-    SfeirBadgeDirective,
+    DetailedCardComponent,
+    SearchBarComponent,
+    MaterialModule
   ],
   declarations: [
     CardComponent,
-    FormComponent,
-    NaPipe,
-    SfeirBadgeDirective
+    DetailedCardComponent,
+    SearchBarComponent
   ],
   providers: [
-    PeopleService
+    DrinkService
   ],
   bootstrap: [
   ]

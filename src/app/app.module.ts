@@ -4,36 +4,43 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 // MATERIAL DESIGN MODULES
 import { MaterialModule } from '@angular/material';
 
 import { SharedModule } from './shared/shared.module';
-import { PeopleModule} from './people/people.module';
+import { DrinksModule} from './drinks/drinks.module';
+import { TagInputModule } from 'ng2-tag-input';
 
 import { AppRoutes } from './app.routes';
 
-import { PeopleAppComponent } from './app.component';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     ReactiveFormsModule,
     MaterialModule.forRoot(),
     AppRoutes,
     SharedModule,
-    PeopleModule
+    DrinksModule,
+    TagInputModule
   ],
-  exports: [RouterModule],
+  exports: [
+    RouterModule,
+    TagInputModule
+  ],
   declarations: [
-    PeopleAppComponent,
+    AppComponent,
     HomeComponent
    ],
   providers: [
    ],
   bootstrap: [
-    PeopleAppComponent
+    AppComponent
   ]
 })
 export class AppModule { }

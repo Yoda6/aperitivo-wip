@@ -1,0 +1,30 @@
+<search-bar (searchedTags)="filterDrinks($event)"></search-bar>
+<section [ngSwitch]="view">
+  <div *ngSwitchCase="'card'" class="flex-container">
+    <drink-card *ngFor="let drink of currentDrinks" [drink]="drink" (personDelete)="delete($event)"></drink-card>
+  </div>
+  
+  <div *ngSwitchCase="'list'">
+    <md-list class="flex-container">
+      <md-list-item (click)="navigate(drink)" *ngFor="let drink of currentDrinks" class="md-whiteframe-2dp md-card">
+        <img md-list-avatar src="{{ drink.photo }}">
+        <h3 md-line>{{drink.name}}</h3>
+        <p md-line class="subtitle">
+          <span>{{drink.type}} - {{ drink.country }}</span>
+        </p>
+        <div class="buttons-info">
+          <a md-button title="Commander" [routerLink]="['/edit', drink.id]">
+            <md-icon>add_shopping_cart</md-icon>
+          </a>
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+</section>
+
+<section class="buttons-fab" *ngIf="dialogStatus == 'inactive'">
+  <button (click)="switchView()" md-fab color="warn">
+    <md-icon *ngIf="view === 'card'" >list</md-icon>
+    <md-icon *ngIf="view === 'list'" >view_stream</md-icon>
+  </button>
+</section>

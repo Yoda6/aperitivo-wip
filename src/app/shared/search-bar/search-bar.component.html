@@ -1,0 +1,8 @@
+<div class="flex-container">
+  <ul class="flex-search-bar" (click)="focus()">
+    <li class="tag" *ngFor="let tag of tags" (click)="deleteTag(tag)">{{tag}} x</li>
+    <li class="tag nopadding">
+      <input id="tagInput" [(ngModel)]="current" (keyup)="keyUp($event)" (blur)="blur()" placeholder="Recherche..." />
+    </li>
+  </ul>
+</div>

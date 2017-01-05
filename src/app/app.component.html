@@ -3,12 +3,19 @@
     <a href="#/home">
       Aperitivo
     </a>
+    <a href="#/drinks">La carte</a>
   </span>
 
   <span class="flex"></span>
 
   <span>
-    <a href="#/drinks">La carte</a>
+    <a href="#/admin" *ngIf="authentService.isLoggedIn()">Admin</a>
+    <a (click)="logout()" *ngIf="authentService.isLoggedIn()">
+      {{authentService.user.auth.displayName}} X
+    </a>
+    <a (click)="login()" *ngIf="!authentService.isLoggedIn()">
+      Login
+    </a>
   </span>
 </md-toolbar>
 

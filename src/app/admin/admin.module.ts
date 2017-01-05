@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DataTableModule, SharedModule, DialogModule, ButtonModule, InputTextModule,
+         InputTextareaModule, SpinnerModule, FileUploadModule }  from 'primeng/primeng';
 // MATERIAL DESIGN MODULES
 import { MaterialModule } from '@angular/material';
 
-import { CardComponent } from './../shared/card/card.component';
-import { DetailedCardComponent } from './../shared/detailed-card/detailed-card.component';
-import { SearchBarComponent } from './../shared/search-bar/search-bar.component';
+import { AdminRoutes } from './admin.routes';
+
+import { StockComponent } from './stock/stock.component';
 import { DrinkService } from './../shared/drink-service/drink.service';
 import { AuthenticationService } from './../shared/authentication-service/authentication.service';
 
@@ -21,21 +23,24 @@ import { LoggedInGuard } from './../login/logged-in.guard';
     HttpModule,
     RouterModule,
     FormsModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    AdminRoutes,
+    DataTableModule,
+    SharedModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    SpinnerModule,
+    FileUploadModule
   ],
   exports: [
     CommonModule,
     RouterModule,
     FormsModule,
-    CardComponent,
-    DetailedCardComponent,
-    SearchBarComponent,
     MaterialModule
   ],
   declarations: [
-    CardComponent,
-    DetailedCardComponent,
-    SearchBarComponent
+    StockComponent
   ],
   providers: [
     DrinkService,
@@ -45,4 +50,4 @@ import { LoggedInGuard } from './../login/logged-in.guard';
   bootstrap: [
   ]
 })
-export class SharedModule { }
+export class AdminModule { }

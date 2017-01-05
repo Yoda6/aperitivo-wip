@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DrinkService } from '../shared/drink-service/drink.service';
 import 'rxjs/add/operator/mergeMap';
 
@@ -18,7 +17,6 @@ export class DrinksComponent implements OnInit {
   view = 'card';
 
   constructor(
-    private _router: Router,
     private _service: DrinkService
   ) { }
 

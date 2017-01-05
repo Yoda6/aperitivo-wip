@@ -1,0 +1,39 @@
+<p-dataTable [value]="drinks" [editable]="true" [rows]="20" [paginator]="true" [responsive]="true" (onEditComplete)="editDrink($event)">
+    <header>Stock des boissons</header>
+    <p-column field="name" header="Nom" [editable]="true" [filter]="true" [sortable]="true"></p-column>
+    <p-column field="type" header="Type" [editable]="true" [filter]="true" [sortable]="true"></p-column>
+    <p-column field="stock" header="Stock" [editable]="true" [filter]="true" [sortable]="true"></p-column>
+    <p-column field="country" header="Pays" [editable]="true" [filter]="true" [sortable]="true"></p-column>
+    <p-column field="recipe" header="Recette" [editable]="true" [filter]="true"></p-column>
+    <footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></footer>
+</p-dataTable>
+
+<p-dialog header="Nouvelle boisson" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="400">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="drink">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="name">Nom</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="drink.name" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="type">Type</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="type" [(ngModel)]="drink.type" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="stock">Stock</label></div>
+            <div class="ui-grid-col-8"><p-spinner size="30" id="stock" [(ngModel)]="drink.stock"></p-spinner></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="country">Pays</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="country" [(ngModel)]="drink.country" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="recipe">Recette</label></div>
+            <div class="ui-grid-col-8"><textarea pInputTextarea id="recipe" [(ngModel)]="drink.recipe"></textarea></div>
+        </div>
+    </div>
+    <footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </footer>
+</p-dialog>

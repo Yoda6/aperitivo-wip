@@ -1,6 +1,11 @@
 /* Angular Material */
 @import '~@angular/material/core/theming/prebuilt/pink-bluegrey.css';
 
+/* PrimeNG */
+@import url('../node_modules/primeng/resources/themes/omega/theme.css');
+@import url('../node_modules/primeng/resources/primeng.min.css');
+/*@import url('../node_modules/font-awesome/css/font-awesome.min.css');*/
+
 body {
   background: red;
   padding: 0;
@@ -10,14 +15,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-* /deep/ * {
+* * {
   font-family: inherit;
   font-size: 14px;
   line-height: 1.42857143;
   color: inherit;
 }
 
-h1, * /deep/ h1 {
+h1, * h1 {
   font-size: 36px;
   margin-top: 20px;
   margin-bottom: 10px;

@@ -1,42 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, ResponseContentType, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AngularFireDatabase } from 'angularfire2';
 
-const BASE_URL: string = 'http://localhost:3000';
+const DB_NAME = 'drinks';
+
+// http://blog.angular-university.io/angular-2-firebase/
 
 @Injectable()
 export class DrinkService {
 
-  constructor(private http: Http) {}
+  constructor(private _http: Http, private _db: AngularFireDatabase) {
+  }
 
   fetch() {
-    return this.http.get(`${BASE_URL}/api/drinks`)
-      .map( res => res.json() );
+    return this._db.list(DB_NAME);
   }
 
   fetchRandom() {
-    return this.http.get(`${BASE_URL}/api/drinks/1`)
-      .map( res => res.json());
+    return this._db.object(`${DB_NAME}/1`);
   }
 
   fetchOne(id) {
-    return this.http.get(`${BASE_URL}/api/drinks/${id}`)
-      .map( res => res.json() );
+   return this._db.object(`${DB_NAME}/${id}`);
   }
 
   delete(id) {
-    return this.http.delete(`${BASE_URL}/api/drinks/${id}`)
-      .map( res => res.json() );
+   /* return this._http.delete(`${BASE_URL}/api/drinks/${id}`)
+      .map( res => res.json() );*/
   }
 
-  update(person) {
-    return this.http.put(`${BASE_URL}/api/drinks/${person.id}`, person)
-      .map( res => res.json() );
+  update(updateDrink) {
+    delete updateDrink.$exists;
+    delete updateDrink.$key;
+    return this.fetchOne(updateDrink.id).update(updateDrink);
   }
 
   create(person) {
-    let requestOptions = { headers: new Headers({'Content-Type': 'application/json'})};
-    return this.http.post(`${BASE_URL}/api/drinks`, JSON.stringify(person), requestOptions)
-      .map( res => res.json() );
+    return this._db.list(DB_NAME).push(person);
   }
 }

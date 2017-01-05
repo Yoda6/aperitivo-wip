@@ -1,0 +1,13 @@
+<md-card class="md-whiteframe-2dp">
+  <md-card-title>
+    Login
+  </md-card-title>
+  <md-card-content *ngIf="!authentService.isLoggedIn()">
+    <button md-raised-button color="accent" (click)="login()">
+      Se connecter avec Google
+    </button>
+  </md-card-content>
+  <md-card-content *ngIf="authentService.isLoggedIn()">
+    <p>Bienvenu {{authentService.user.auth.displayName}}</p>
+  </md-card-content>
+</md-card>

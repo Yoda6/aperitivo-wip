@@ -3,13 +3,16 @@
     <a href="#/home">
       Aperitivo
     </a>
+    <a href="#/admin" *ngIf="authentService.isLoggedIn()">Admin</a>
     <a href="#/drinks">La carte</a>
   </span>
 
   <span class="flex"></span>
 
   <span>
-    <a href="#/admin" *ngIf="authentService.isLoggedIn()">Admin</a>
+    <a href="#/cart">
+      <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+    </a>
     <a (click)="logout()" *ngIf="authentService.isLoggedIn()">
       {{authentService.user.auth.displayName}} X
     </a>

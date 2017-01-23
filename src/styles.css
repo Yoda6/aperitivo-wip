@@ -2,9 +2,8 @@
 @import '~@angular/material/core/theming/prebuilt/pink-bluegrey.css';
 
 /* PrimeNG */
-@import url('../node_modules/primeng/resources/themes/omega/theme.css');
-@import url('../node_modules/primeng/resources/primeng.min.css');
-/*@import url('../node_modules/font-awesome/css/font-awesome.min.css');*/
+@import '~primeng/resources/themes/omega/theme.css';
+@import '~primeng/resources/primeng.min.css';
 
 body {
   background: red;
@@ -113,4 +112,9 @@ button[md-fab], a[md-fab] {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+}
+
+.col-button {
+    width: 10%;
+    text-align: center;
 }

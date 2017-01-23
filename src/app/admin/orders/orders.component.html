@@ -1,0 +1,16 @@
+<p-dataTable #dt [value]="items" sortField="userName" rowGroupMode="rowspan" [responsive]="true" exportFilename="Commandes">
+  <header>
+    <div class="ui-helper-clearfix">
+      <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()" style="float:left"></button>Commandes
+    </div>
+  </header>
+  <p-column field="userName">
+    <template let-item="rowData" pTemplate="body">
+        {{item.userName}}
+      <button type="button" class="ui-button-success" style="float:right" pButton (click)="validateOrder(item.order)" icon="fa-check" label="Valider"></button>
+    </template>
+  </p-column>
+  <p-column field="name" header="Nom"></p-column>
+  <p-column field="type" header="Type"></p-column>
+  <p-column field="quantity" header="Quantité"></p-column>
+</p-dataTable>

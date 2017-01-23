@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DrinkService } from '../shared/drink-service/drink.service';
+import { CartService } from '../shared/cart-service/cart.service';
 import 'rxjs/add/operator/mergeMap';
 
 const BASE_URL = 'http://localhost:9000';
@@ -17,7 +18,8 @@ export class DrinksComponent implements OnInit {
   view = 'card';
 
   constructor(
-    private _service: DrinkService
+    private _service: DrinkService,
+    private _cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -31,22 +33,26 @@ export class DrinksComponent implements OnInit {
     this.view = (this.view === 'card') ? 'list' : 'card';
   }
 
+  order(drink) {
+    this._cartService.addItem(drink);
+  }
+
   filterDrinks(tags) {
     if (!tags || tags.length === 0) {
       this.currentDrinks = this.drinks;
     } else {
-      this.currentDrinks = this.drinks.filter(function(drink) {
-          let present = false;
-          tags.forEach(function(tag) {
-            let searched = tag.toLowerCase();
-            present = drink.name.toLowerCase().indexOf(searched) !== -1
-                      || drink.type.toLowerCase().indexOf(searched) !== -1
-                      || drink.country.toLowerCase().indexOf(searched) !== -1;
-            if (present) {
-              return;
-            }
-          });
-          return present;
+      this.currentDrinks = this.drinks.filter(function (drink) {
+        let present = false;
+        tags.forEach(function (tag) {
+          let searched = tag.toLowerCase();
+          present = drink.name.toLowerCase().indexOf(searched) !== -1
+            || drink.type.toLowerCase().indexOf(searched) !== -1
+            || drink.country.toLowerCase().indexOf(searched) !== -1;
+          if (present) {
+            return;
+          }
+        });
+        return present;
       });
     }
   }

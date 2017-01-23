@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Panier</h2>
+  <p-dataTable [value]="items" [editable]="true" [responsive]="true" emptyMessage="Votre panier est vide">
+    <p-column field="name" header="Nom" [editable]="false"></p-column>
+    <p-column field="type" header="Type" [editable]="false"></p-column>
+    <p-column>
+      <template pTemplate="header">
+        Quantité
+      </template>
+      <template let-item="rowData" pTemplate="body">
+        <p-spinner size="10" [(ngModel)]="item.quantity" [min]="1"></p-spinner>
+      </template>
+    </p-column>
+    <p-column styleClass="col-button">
+      <template let-item="rowData" pTemplate="body">
+        <button type="button " class="ui-button-danger" pButton (click)="deleteItem(item)" icon="fa-times"></button>
+      </template>
+    </p-column>
+    <footer>
+      <div class="ui-helper-clearfix" style="width:100%">
+        <button type="button" pButton class="order-button" (click)="setOrder()" label="Commander"></button>
+      </div>
+    </footer>
+  </p-dataTable>
+</div>

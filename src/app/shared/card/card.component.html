@@ -17,7 +17,7 @@
       Pays&nbsp;:&nbsp;<a href="#">{{ drink.country }}</a>
     </div>
     <div class="buttons-info">
-      <a md-button title="Commander" [routerLink]="['/edit', drink.id]">
+      <a md-button title="Commander" (click)="order(drink)">
         <md-icon>add_shopping_cart</md-icon>
       </a>
     </div>

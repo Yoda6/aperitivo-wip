@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, ResponseContentType, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { AngularFireDatabase } from 'angularfire2';
 
 const DB_NAME = 'drinks';
@@ -10,7 +8,7 @@ const DB_NAME = 'drinks';
 @Injectable()
 export class DrinkService {
 
-  constructor(private _http: Http, private _db: AngularFireDatabase) {
+  constructor(private _db: AngularFireDatabase) {
   }
 
   fetch() {

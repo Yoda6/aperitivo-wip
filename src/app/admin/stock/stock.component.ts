@@ -10,10 +10,14 @@ export class StockComponent implements OnInit {
 
   drinks = [];
   drink = {};
+  i = 0;
   displayDialog: boolean;
+  displayImageDialog: boolean;
+  uploadURL = 'http://test.fr';
 
   constructor(private _drinkService: DrinkService) {
     this.displayDialog = false;
+    this.displayImageDialog = false;
   }
 
   ngOnInit() {
@@ -26,9 +30,15 @@ export class StockComponent implements OnInit {
     this._drinkService.update(event.data).catch(error => alert(error));
   }
 
+  addImage(drink) {
+    this.displayImageDialog = true;
+  }
+
   showDialogToAdd() {
     this.drink = new Object();
     this.displayDialog = true;
+    this.i = this.i + 1;
+    this.uploadURL = 'http://autrechose' + this.i + '.fr';
   }
 
   save() {
@@ -37,5 +47,18 @@ export class StockComponent implements OnInit {
       this.drink = null;
       this.displayDialog = false;
     }
+  }
+
+  onUpload(event) {
+    console.log(event);
+    this.saveImage();
+  }
+
+  saveImage() {
+    this.displayImageDialog = false;
+  }
+
+  deleteImage(drink) {
+    console.log(drink.photo);
   }
 }

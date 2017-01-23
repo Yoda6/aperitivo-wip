@@ -5,8 +5,23 @@
     <p-column field="stock" header="Stock" [editable]="true" [filter]="true" [sortable]="true"></p-column>
     <p-column field="country" header="Pays" [editable]="true" [filter]="true" [sortable]="true"></p-column>
     <p-column field="recipe" header="Recette" [editable]="true" [filter]="true"></p-column>
-    <footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></footer>
+    <p-column styleClass="col-button">
+        <template pTemplate="header">
+            Image
+        </template>
+        <template let-drink="rowData" pTemplate="body">
+            <button type="button" pButton (click)="addImage(drink)" icon="fa-plus" *ngIf="!drink.photo"></button>
+            <button type="button "class="ui-button-danger" pButton (click)="deleteImage(drink)" icon="fa-times" *ngIf="drink.photo"></button>
+        </template>
+    </p-column>
+    <footer>
+        <div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div>
+    </footer>
 </p-dataTable>
+
+<div class="orders">
+    <orders></orders>
+</div>
 
 <p-dialog header="Nouvelle boisson" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="400">
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="drink">
@@ -34,6 +49,18 @@
     <footer>
         <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
             <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </footer>
+</p-dialog>
+
+<p-dialog header="Editer l'image" [(visible)]="displayImageDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="400">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <p-fileUpload name="myfile[]" [url]="uploadURL" 
+                    (onBeforeUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000"></p-fileUpload>
+    </div>
+    <footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-check" (click)="saveImage()" label="Save"></button>
         </div>
     </footer>
 </p-dialog>

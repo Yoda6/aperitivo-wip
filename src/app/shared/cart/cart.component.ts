@@ -9,6 +9,7 @@ import { CartService } from '../cart-service/cart.service';
 export class CartComponent implements OnInit {
 
   items = [];
+  ordered = false;
 
   constructor(private _cartService: CartService) {
   }
@@ -20,6 +21,7 @@ export class CartComponent implements OnInit {
   setOrder() {
     this._cartService.setOrder();
     this.items = [];
+    this.ordered = true;
   }
 
   changeQuantity(item) {

@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Panier</h2>
-  <p-dataTable [value]="items" [editable]="true" [responsive]="true" emptyMessage="Votre panier est vide">
+  <p-dataTable [value]="items" [editable]="true" [responsive]="true" emptyMessage="Votre panier est vide" *ngIf="!ordered">
     <p-column field="name" header="Nom" [editable]="false"></p-column>
     <p-column field="type" header="Type" [editable]="false"></p-column>
     <p-column>
@@ -18,8 +18,13 @@
     </p-column>
     <footer>
       <div class="ui-helper-clearfix" style="width:100%">
-        <button type="button" pButton class="order-button" (click)="setOrder()" label="Commander"></button>
+        <button type="button" pButton class="order-button" (click)="setOrder()" label="Commander" [disabled]="items.length === 0"></button>
       </div>
     </footer>
   </p-dataTable>
+  <div *ngIf="ordered">
+    <p>
+      Votre commande a été prise en compte, merci !
+    </p>
+  </div>
 </div>

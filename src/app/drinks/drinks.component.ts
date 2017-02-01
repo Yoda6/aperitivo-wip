@@ -17,13 +17,11 @@ export class DrinksComponent implements OnInit {
   currentDrinks = [];
   view = 'card';
 
-  constructor(
-    private _service: DrinkService,
-    private _cartService: CartService
-  ) { }
+  constructor(private _service: DrinkService, private _cartService: CartService) {
+  }
 
   ngOnInit() {
-    this._service.fetch().subscribe((drinks) => {
+    this._service.fetch().subscribe(drinks => {
       this.drinks = drinks;
       this.currentDrinks = drinks;
     });

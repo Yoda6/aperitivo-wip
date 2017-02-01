@@ -22,6 +22,5 @@ export class AppComponent implements OnInit {
   }
 
   login() {
-    //
   }
 }

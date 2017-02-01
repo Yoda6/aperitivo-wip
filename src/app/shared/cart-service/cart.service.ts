@@ -1,51 +1,47 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2';
 import { AuthenticationService } from '../authentication-service/authentication.service';
 
-const DB_NAME = 'orders/order-';
+const DB_NAME = 'carts/cart-';
 
 @Injectable()
 export class CartService {
 
-  private items: Array<any>;
+  items: FirebaseListObservable<Array<any>>;
+  localItems: Array<any>;
 
   constructor(private _db: AngularFireDatabase, private _authentService: AuthenticationService) {
-    //this._db.list(DB_NAME + this._authentService.user.uid).subscribe(items => this.items = items);
-    this.items = [];
+    this.items = this._db.list(DB_NAME + this._authentService.user.uid + '/items');
+    this.items.subscribe(items => this.localItems = items);
   }
 
   getItems() {
-    return this.items;
+    return this._db.list(DB_NAME + this._authentService.user.uid + '/items');
   }
 
   addItem(itemToAdd) {
-    let found = false;
-    for (const item of this.items) {
+    const cartItem = {
+      'id': itemToAdd.id,
+      'name': itemToAdd.name,
+      'type': itemToAdd.type,
+      'quantity': 1,
+      'userName': this._authentService.user.auth.displayName
+    };
+    for (const item of this.localItems) {
       if (item.id === itemToAdd.id) {
-        item.quantity++;
-        found = true;
+        cartItem.quantity = item.quantity + 1;
+        this.items.remove(item);
         break;
       }
     }
-    if (!found) {
-      const cartItem = {
-        'id': itemToAdd.id,
-        'name': itemToAdd.name,
-        'type': itemToAdd.type,
-        'quantity': 1,
-        'userName': this._authentService.user.auth.displayName
-      };
-      this.items.push(cartItem);
-    }
+    this.items.push(cartItem);
   }
 
   deleteItem(item) {
-    this.items.splice(this.items.indexOf(item), 1);
+    //this.items.splice(this.items.indexOf(item), 1);
   }
 
-  setOrder() {
-    const order = this._db.object(DB_NAME + this._authentService.user.uid);
-    order.set({ 'userName': this._authentService.user.auth.displayName, 'items': this.items });
-    this.items = [];
+  deleteCart(items) {
+    this._db.object(DB_NAME + this._authentService.user.uid + '/items').remove();
   }
 }

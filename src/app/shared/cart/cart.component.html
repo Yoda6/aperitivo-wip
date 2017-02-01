@@ -16,11 +16,11 @@
         <button type="button " class="ui-button-danger" pButton (click)="deleteItem(item)" icon="fa-times"></button>
       </template>
     </p-column>
-    <footer>
+    <p-footer>
       <div class="ui-helper-clearfix" style="width:100%">
         <button type="button" pButton class="order-button" (click)="setOrder()" label="Commander" [disabled]="items.length === 0"></button>
       </div>
-    </footer>
+    </p-footer>
   </p-dataTable>
   <div *ngIf="ordered">
     <p>

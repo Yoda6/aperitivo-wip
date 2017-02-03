@@ -37,8 +37,15 @@ export class CartService {
     this.items.push(cartItem);
   }
 
+  editCartItem(event) {
+    console.log(event.data);
+   //  this._drinkService.update(event.data).catch(error => alert(error));
+  }
+
   deleteItem(item) {
-    //this.items.splice(this.items.indexOf(item), 1);
+    if (item && item.$key) {
+      this.items.remove(item.$key);
+    }
   }
 
   deleteCart(items) {

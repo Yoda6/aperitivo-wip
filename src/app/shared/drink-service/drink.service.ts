@@ -23,11 +23,6 @@ export class DrinkService {
    return this._db.object(`${DB_NAME}/${id}`);
   }
 
-  delete(id) {
-   /* return this._http.delete(`${BASE_URL}/api/drinks/${id}`)
-      .map( res => res.json() );*/
-  }
-
   update(updateDrink) {
     delete updateDrink.$exists;
     delete updateDrink.$key;
@@ -36,5 +31,15 @@ export class DrinkService {
 
   create(person) {
     return this._db.list(DB_NAME).push(person);
+  }
+
+  reduceStock(orderedItem) {
+    this.fetchOne(orderedItem.id).first().subscribe(drink => {
+      drink.stock = drink.stock - orderedItem.quantity;
+      if (drink.stock < 0) {
+        drink.stock = 0;
+      }
+      this.update(drink);
+    });
   }
 }

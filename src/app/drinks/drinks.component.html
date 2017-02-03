@@ -1,12 +1,15 @@
 <search-bar (searchedTags)="filterDrinks($event)"></search-bar>
 <section [ngSwitch]="view">
   <div *ngSwitchCase="'card'" class="flex-container">
-    <drink-card *ngFor="let drink of currentDrinks" [drink]="drink" (personDelete)="delete($event)"></drink-card>
+    <ng-container *ngFor="let drink of currentDrinks">
+      <drink-card *ngIf="drink.stock > 0" [drink]="drink" (personDelete)="delete($event)"></drink-card>
+    </ng-container>
   </div>
   
   <div *ngSwitchCase="'list'">
     <md-list class="flex-container">
-      <md-list-item (click)="navigate(drink)" *ngFor="let drink of currentDrinks" class="md-whiteframe-2dp md-card">
+      <ng-container *ngFor="let drink of currentDrinks">
+      <md-list-item (click)="navigate(drink)" *ngIf="drink.stock > 0" class="md-whiteframe-2dp md-card">
         <img md-list-avatar src="{{ drink.photo }}">
         <h3 md-line>{{drink.name}}</h3>
         <p md-line class="subtitle">
@@ -18,6 +21,7 @@
           </a>
         </div>
       </md-list-item>
+      </ng-container>
     </md-list>
   </div>
 </section>

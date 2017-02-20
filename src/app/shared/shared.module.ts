@@ -29,7 +29,7 @@ import { LoggedInGuard } from './../login/logged-in.guard';
     DataTableModule,
     ButtonModule,
     SpinnerModule,
-    MaterialModule.forRoot()
+    MaterialModule
   ],
   exports: [
     CommonModule,

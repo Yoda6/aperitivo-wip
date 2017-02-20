@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-  @Output('searchedTags') searchedTags$;
+  @Output() searchedTags$;
 
   tags: Array<String>;
   current: String;
@@ -45,7 +45,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   deleteTag(tag) {
-    let index = this.tags.indexOf(tag);
+    const index = this.tags.indexOf(tag);
     this.tags.splice(index, 1);
     this.searchedTags$.emit(this.tags);
   }

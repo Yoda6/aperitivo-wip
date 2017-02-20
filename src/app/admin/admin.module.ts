@@ -24,7 +24,7 @@ import { LoggedInGuard } from './../login/logged-in.guard';
     HttpModule,
     RouterModule,
     FormsModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     AdminRoutes,
     DataTableModule,
     SharedModule,

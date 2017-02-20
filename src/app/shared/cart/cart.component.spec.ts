@@ -5,7 +5,7 @@ import { CartComponent } from './cart.component';
 
 describe('Component: Card', () => {
   it('should create an instance', () => {
-    let component = new CartComponent();
+    const component = new CartComponent();
     expect(component).toBeTruthy();
   });
 });

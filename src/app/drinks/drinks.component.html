@@ -1,8 +1,8 @@
-<search-bar (searchedTags)="filterDrinks($event)"></search-bar>
+<search-bar (searchedTags$)="filterDrinks($event)"></search-bar>
 <section [ngSwitch]="view">
   <div *ngSwitchCase="'card'" class="flex-container">
     <ng-container *ngFor="let drink of currentDrinks">
-      <drink-card *ngIf="drink.stock > 0" [drink]="drink" (personDelete)="delete($event)"></drink-card>
+      <drink-card *ngIf="drink.stock > 0" [drink]="drink"></drink-card>
     </ng-container>
   </div>
   

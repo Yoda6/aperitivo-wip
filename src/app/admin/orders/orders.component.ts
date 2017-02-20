@@ -33,7 +33,7 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  validateOrder(order) {    
+  validateOrder(order) {
     this._orderService.validateOrder(order);
   }
 }

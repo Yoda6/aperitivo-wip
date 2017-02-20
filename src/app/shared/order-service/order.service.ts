@@ -10,8 +10,8 @@ const ORDER_DB_NAME = ORDERS_DB_NAME + '/order-';
 @Injectable()
 export class OrderService {
 
-  orderObs: FirebaseObjectObservable<any>;
-  order;
+  orderObs: FirebaseObjectObservable<any> = null;
+  order = null;
 
   constructor(private _db: AngularFireDatabase, private _authentService: AuthenticationService, private _drinkSevice: DrinkService) {
     this.orderObs = this._db.object(ORDER_DB_NAME + this._authentService.user.uid);
@@ -63,7 +63,7 @@ export class OrderService {
       for (const newItem of items) {
         if (item.id === newItem.id) {
           found = true;
-          newItem.quantity = newItem.quantity + item.quantity;
+          newItem.quantity = parseInt(newItem.quantity, 10) + parseInt(item.quantity, 10);
           break;
         }
       }

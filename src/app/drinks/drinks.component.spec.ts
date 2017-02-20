@@ -5,7 +5,7 @@ import { DrinksComponent } from './drinks.component';
 
 describe('Component: Drinks', () => {
   it('should create an instance', () => {
-    let component = new DrinksComponent();
+    const component = new DrinksComponent();
     expect(component).toBeTruthy();
   });
 });

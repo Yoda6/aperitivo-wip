@@ -37,7 +37,7 @@ import { LoggedInGuard } from './login/logged-in.guard';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     AngularFireModule.initializeApp(firebaseConfig, {
       provider: AuthProviders.Google,
       method: AuthMethods.Popup

@@ -42,7 +42,7 @@ export class DrinksComponent implements OnInit {
       this.currentDrinks = this.drinks.filter(function (drink) {
         let present = false;
         tags.forEach(function (tag) {
-          let searched = tag.toLowerCase();
+          const searched = tag.toLowerCase();
           present = drink.name.toLowerCase().indexOf(searched) !== -1
             || drink.type.toLowerCase().indexOf(searched) !== -1
             || drink.country.toLowerCase().indexOf(searched) !== -1;
